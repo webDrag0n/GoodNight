@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 249e135b054751f4ea8053a61d1cc555, type: 3}
+  m_Name: Penguin
+  m_EditorClassIdentifier: 
+  import_data: "Penguin \r\n\r\n\nEvolved according to the cold envrionment\r\n0\r\n1\r\n1\r\n\r\n0\r\n0\r\n0\r"
+  name: "Penguin \r"
+  avatar_code: 010000000000000001000000
+  alert_level_to_us: 0.062689774
+  description: "\r"
+  planet_destroyed: 0
+  planet_destroy_record: []
+  owned_planet_amount: 3
+  technogy_level: 1
+  weapon_storage: 0000000001000000000000000000000000000000
+  expansion_rate: 0
+  evolve_rate: 0
+  prefered_humidity: 0
+  prefered_temperature: 0

@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0c10ca103ac3684493ae9303e2b5d9a, type: 3}
+  m_Name: RaceCollectionDefault
+  m_EditorClassIdentifier: 
+  races_collection:
+  - {fileID: 11400000, guid: 57630377d969b60429613d0c4dd8576a, type: 2}
+  - {fileID: 11400000, guid: cf29c876890545945bd04c958b786cbd, type: 2}
+  - {fileID: 11400000, guid: 5c6a92bd1f1556e49a78d8e32ff57a5a, type: 2}
+  - {fileID: 11400000, guid: 5e01f6c528e544343a08f47d9dbf67e6, type: 2}
+  - {fileID: 11400000, guid: bd73cd0744310ef40b26b3ad60041056, type: 2}
+  - {fileID: 11400000, guid: d54514c3d3441d34c82b2927dab7b85d, type: 2}
+  - {fileID: 11400000, guid: 2df8ccd04b24d184681cd43b14908764, type: 2}
+  - {fileID: 11400000, guid: 2d9e2ba4ed43c964dbcab913603e7a36, type: 2}
+  - {fileID: 11400000, guid: 7bb7d35dc9b7e2147b4885747dca0dfc, type: 2}
+  - {fileID: 11400000, guid: 21110dd723bba564dbae6c665c9d3144, type: 2}
+  - {fileID: 11400000, guid: d3cc585e8760bf54ea815ad9ecdcddc2, type: 2}
+  - {fileID: 11400000, guid: 1707c43787fd3874eba6d0148dc3eeec, type: 2}
+  - {fileID: 11400000, guid: 712fda3798d044e47b26331e91485586, type: 2}
+  - {fileID: 11400000, guid: e698e558b37cae646a38882343b74c3f, type: 2}
+  - {fileID: 11400000, guid: 9500bc6f590c6c146aa1077ce36196d3, type: 2}
+  - {fileID: 11400000, guid: ee5c4c62d08841a4a9b434a7ae8cc5ea, type: 2}
+  - {fileID: 11400000, guid: e3702068a015f6e4a888fddab38cc401, type: 2}
+  - {fileID: 11400000, guid: d2ac317b4148aee4a9fb22e5107aa3ce, type: 2}
+  - {fileID: 11400000, guid: eb733aafd23f8d946a02bb80ac55436e, type: 2}
+  - {fileID: 11400000, guid: bef8f71c7aa05974290483d5dd60fa43, type: 2}
+  - {fileID: 11400000, guid: 3c4385ae0c91dab4399c9f528ad29044, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

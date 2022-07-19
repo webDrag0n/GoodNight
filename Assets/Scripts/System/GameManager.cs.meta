@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 9c3d1a0ecc4762340b0963851ade8c3a
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - game_state: {fileID: 11400000, guid: ce873e7b3e5027e4c834116e735a4a9d, type: 2}
+  - game_checkpoint: {fileID: 11400000, guid: f7d7eb58aab316c48a52c5baf21051e7, type: 2}
+  - game_settings: {fileID: 11400000, guid: ad8f52ce2a561d846b1bf4106536d58c, type: 2}
+  - game_settings_default: {fileID: 11400000, guid: ab6f0b131355e32438becde760997334, type: 2}
+  - deafault_weapon_collection: {fileID: 11400000, guid: 6e3ac15ef2d3702408aad24732def468, type: 2}
+  - default_races_collection: {fileID: 11400000, guid: 0e4291da905f1934cbdd152932d35fe4, type: 2}
+  - planet_renderer: {instanceID: 0}
+  - ui_shield: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

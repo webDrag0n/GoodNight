@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 249e135b054751f4ea8053a61d1cc555, type: 3}
+  m_Name: Player
+  m_EditorClassIdentifier: 
+  import_data: 
+  name: 
+  avatar_code: 000000000000000000000000
+  alert_level_to_us: 0
+  description: 
+  planet_destroyed: 7
+  planet_destroy_record:
+  - '174PN128708: Rocket'
+  - '174NP124876: Rocket'
+  - '164PN74869: Rocket'
+  - '140PN124962: Rocket'
+  - '159NP121432: Rocket'
+  - '135PN125184: Rocket'
+  - '135NP84745: Rocket'
+  owned_planet_amount: 1
+  technogy_level: 5
+  weapon_storage: 0000000000000000020000000000000000000000
+  expansion_rate: 0
+  evolve_rate: 0
+  prefered_humidity: 0
+  prefered_temperature: 0

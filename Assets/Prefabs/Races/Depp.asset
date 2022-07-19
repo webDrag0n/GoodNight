@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 249e135b054751f4ea8053a61d1cc555, type: 3}
+  m_Name: Depp
+  m_EditorClassIdentifier: 
+  import_data: "Depp\r\n\r\nThey love drinking \r\n2\r\n2\r\n4\r\n\r\n1\r\n0\r\n0.1\r\n"
+  name: Depp
+  avatar_code: 030000000100000005000000
+  alert_level_to_us: 0.048768062
+  description: 'They love drinking  '
+  planet_destroyed: 2
+  owned_planet_amount: 2
+  technogy_level: 4
+  weapon_storage: 0000000000000000000000000000000000000000
+  expansion_rate: 0
+  evolve_rate: 0.1
+  prefered_humidity: 1
+  prefered_temperature: 0
