@@ -52,6 +52,12 @@ public class Race : ScriptableObject
         if (import_data != "") ParseDataFromString(import_data);
     }
 
+    public void Copy(Race target)
+    {
+        // copy all attributes
+
+    }
+
     public void Upgrade()
     {
         technogy_level += 1;
@@ -107,7 +113,7 @@ public class Race : ScriptableObject
 
     public float CalculateKillPoint()
     {
-        return technogy_level * expansion_rate * owned_planet_amount / 100;
+        return technogy_level * expansion_rate * owned_planet_amount;
     }
 
     //public void SetRandomValues()

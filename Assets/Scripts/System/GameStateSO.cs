@@ -25,7 +25,7 @@ public class GameStateSO : ScriptableObject
 
     public bool no_touch = false;
 
-    public Planet[] planet_bookmark;
+    public List<Planet> planet_bookmark;
     public bool is_bookmark_open = false;
     public bool is_TV_open = true;
 
@@ -44,6 +44,10 @@ public class GameStateSO : ScriptableObject
         currentPlanet.Initialize();
 
         no_touch = false;
+
+        planet_bookmark = new List<Planet>();
+        is_bookmark_open = false;
+        is_TV_open = false;
 
         round = 0;
     }

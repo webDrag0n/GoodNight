@@ -25,9 +25,12 @@ public class GameManager : MonoBehaviour
 
     public PlanetInfoTV planet_info_tv;
 
+    public TMP_Text universe_size_value;
+
     public GameObject win_UI;
     public TMP_Text win_UI_PlanetDestroyedValue;
     public GameObject dead_UI;
+    public TMP_Text dead_UI_message;
     public TMP_Text dead_UI_PlanetDestroyedValue;
 
     private void Start()
@@ -36,12 +39,102 @@ public class GameManager : MonoBehaviour
     }
     public void Initialize()
     {
+        game_state.game_stage = GameStages.AwaitPlanetLoad;
         // copy default races collection to runtime
         InitRacePool(game_state.runtime_races_collection);
         // clear and populate universe with planets
         ClearUniverse(game_state.universe);
         InitUniverse(game_state.universe);
-        game_state.game_stage = GameStages.AwaitPlanetLoad;
+    }
+
+    public void NextLoop()
+    {
+        // if no planets left, player wins
+        if (game_state.universe.Size() <= 0)
+        {
+            game_state.game_stage = GameStages.Wins;
+            win_UI_PlanetDestroyedValue.text = game_state.player.planet_destroyed.ToString();
+
+        }
+        else
+        {
+
+            // get a new planet from the waiting list to render
+            game_state.currentPlanet = game_state.universe.GetRandomPlanet();
+
+            // update planet info TV
+            planet_info_tv.TextUpdate();
+
+            // trigger renderer update
+            planet_renderer.planet = game_state.currentPlanet;
+            planet_renderer.RenderPlanet();
+            universe_size_value.text = game_state.universe.Size().ToString();
+
+            planet_renderer.animator.SetTrigger("next");
+            planet_renderer.effects_animator.SetTrigger("next");
+            game_state.game_stage = GameStages.Default;
+
+            // iterate through the runtime race collection
+            for (int i = 0; i < game_state.runtime_races_collection.Size(); i++)
+            {
+                // skip null races
+                if (!game_state.runtime_races_collection.Get(i)) continue;
+
+                // expand a new planet for some random races
+                if (game_state.runtime_races_collection.Get(i).expansion_rate > Random.Range(0f, 1f))
+                {
+                    // init a new planet and set race settings
+                    Planet planet = new Planet();
+                    planet.owned_by_race = game_state.runtime_races_collection.Get(i);
+                    if (planet.owned_by_race)
+                    {
+                        planet.owned_by_race.owned_planet_amount += 1;
+                    }
+                    game_state.universe.AddPlanet(planet);
+                }
+
+                // calculate the kill point of current race
+                float kill_point = game_state.runtime_races_collection.Get(i).CalculateKillPoint();
+                float roll_point = Random.Range(0f, kill_point);
+                Debug.Log(roll_point);
+
+                // check if this race could kill player
+                if (roll_point >= kill_point_required_to_kill_player)
+                {
+                    // play the killing animation base on the killing weapon
+
+                    // player killed, game over
+                    game_state.game_stage = GameStages.Dead;
+                    // record the race and weapon used that killed player
+                    Race killer = game_state.runtime_races_collection.Get(i);
+                    dead_UI_message.text = "You are killed by " + killer.name + " with Rocket.\n"
+                        + "Their technology is at level " + killer.technogy_level + ", they have:\n"
+                        + killer.weapon_storage[2] + " Rockets\n"
+                        + killer.weapon_storage[3] + " Lasers\n"
+                        + killer.weapon_storage[4] + " Dual Vector Foils.";
+                    dead_UI_PlanetDestroyedValue.text = game_state.player.planet_destroyed.ToString();
+                    // player became the race that killed player
+                    game_state.player = killer;
+                    Debug.Log("Player Killed");
+                    dead_UI.SetActive(true);
+                }
+
+            }
+
+            // player upgrade every 10 kills
+            if (game_state.player.planet_destroyed % 10 == 0)
+            {
+                game_state.player.Upgrade();
+            }
+
+            // player's gets a random weapon every 5 rounds
+            if (game_state.round % 5 == 0)
+            {
+                game_state.player.weapon_storage[Random.Range(2, 5)] += 1;
+            }
+        }
+
+        game_state.round += 1;
     }
 
     private void Update()
@@ -51,91 +144,16 @@ public class GameManager : MonoBehaviour
         // main round loop, executes when player performs an action on planet
         if (game_state.game_stage == GameStages.AwaitPlanetLoad)
         {
-            // if no planets left, player wins
-            if (game_state.universe.Size() <= 0)
-            {
-                game_state.game_stage = GameStages.Wins;
-
-            }
-            else
-            {
-
-                // get a new planet from the waiting list to render
-                game_state.currentPlanet = game_state.universe.GetRandomPlanet();
-
-                // update planet info TV
-                planet_info_tv.TextUpdate();
-
-                // trigger renderer update
-                planet_renderer.planet = game_state.currentPlanet;
-                planet_renderer.RenderPlanet();
-                Debug.Log(game_state.universe.Size());
-
-                planet_renderer.animator.SetTrigger("next");
-                planet_renderer.effects_animator.SetTrigger("next");
-                game_state.game_stage = GameStages.Default;
-
-                // iterate through the runtime race collection and expand a new planet
-                // for some random races
-                for (int i = 0; i < game_state.runtime_races_collection.Size(); i++)
-                {
-                    // skip null races
-                    if (!game_state.runtime_races_collection.Get(i)) continue;
-                    if (game_state.runtime_races_collection.Get(i).expansion_rate > Random.Range(0f, 1f))
-                    {
-                        // init a new planet and set race settings
-                        Planet planet = new Planet();
-                        planet.owned_by_race = game_state.runtime_races_collection.Get(i);
-                        if (planet.owned_by_race)
-                        {
-                            planet.owned_by_race.owned_planet_amount += 1;
-                        }
-                        game_state.universe.AddPlanet(planet);
-                    }
-                    if (game_state.runtime_races_collection.Get(i))
-                    {
-                        // check if this race could kill player
-                        float kill_point = game_state.runtime_races_collection.Get(i).CalculateKillPoint();
-                        if (Random.Range(0f, kill_point) > kill_point_required_to_kill_player)
-                        {
-                            // player killed, game over
-                        }
-
-                    }
-                }
-                // iterate through race list
-                for (int i = 0; i < game_state.runtime_races_collection.Size(); i++)
-                {
-                    // each race roll dice to decide whether they could upgrade or not
-
-                    // check if anyone can kill player
-
-                        // record the race and weapon used to kill player
-
-                }
-
-
-
-                // player upgrade every 10 kills
-                if (game_state.player.planet_destroyed % 10 == 0)
-                {
-                    game_state.player.Upgrade();
-                }
-
-                // player's gets a random weapon every 5 rounds
-                if (game_state.round % 5 == 0)
-                {
-                    game_state.player.weapon_storage[Random.Range(2, 5)] += 1;
-                }
-            }
-
-            game_state.round += 1;
+            NextLoop();
         }
 
         if (game_state.game_stage == GameStages.Wins)
         {
-            dead_UI_PlanetDestroyedValue.text = game_state.player.planet_destroyed.ToString();
             win_UI.SetActive(true);
+        }
+        else if (game_state.game_stage == GameStages.Dead)
+        {
+            dead_UI.SetActive(true);
         }
     }
 
